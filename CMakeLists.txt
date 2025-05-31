@@ -3,26 +3,26 @@ cmake_minimum_required(VERSION 3.12)
 set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
 set(PROJECT_VERSION 0.0.${PATCH_VERSION})
 
-project(homework_1 VERSION ${PROJECT_VERSION})
+project(homework_2 VERSION ${PROJECT_VERSION})
 
-option(WITH_GTEST "Whether to build GTest test" ON)
+option(WITH_GTEST "Whether to build GTest test" OFF)
 
 configure_file(version.h.in version.h)
 
 add_executable(homework_cli main.cpp)
-add_library(homework_1 lib.cpp)
+add_library(homework_2 lib.cpp, ipv4.cpp)
 
-set_target_properties(homework_cli homework_1 PROPERTIES
+set_target_properties(homework_cli homework_2 PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
 )
 
-target_include_directories(homework_1
+target_include_directories(homework_2
     PRIVATE "${CMAKE_BINARY_DIR}"
 )
 
 target_link_libraries(homework_cli PRIVATE
-    homework_1
+    homework_2
 )
 
 if(WITH_GTEST)
@@ -37,7 +37,7 @@ if(WITH_GTEST)
     target_link_libraries(test_version
         GTest::gtest
         GTest::gtest_main
-        homework_1
+        homework_2
     )
 endif()
 
@@ -45,7 +45,7 @@ if (MSVC)
     target_compile_options(homework_cli PRIVATE
         /W4
     )
-    target_compile_options(homework_1 PRIVATE
+    target_compile_options(homework_2 PRIVATE
         /W4
     )
     if(WITH_GTEST)
@@ -57,7 +57,7 @@ else ()
     target_compile_options(homework_cli PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
-    target_compile_options(homework_1 PRIVATE
+    target_compile_options(homework_2 PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
     if(WITH_GTEST)
