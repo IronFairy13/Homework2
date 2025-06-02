@@ -4,17 +4,12 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#include "ipv4.h"
 
-class IPv4
-{
-public:
 
-    explicit  IPv4(const std::string& s) : ipv4(parser_ipv4(s))
-    {
-        
-    }
+    IPv4::IPv4(const std::string& s) : ipv4(parser_ipv4(s)) {}
 
-    static std::array<uint8_t, 4> parser_ipv4(const std::string &s)
+    std::array<uint8_t, 4> IPv4::parser_ipv4(const std::string &s)
     {
         std::array<uint8_t, 4> ip{};
         std::istringstream ss(s);
@@ -26,15 +21,10 @@ public:
         return ip;
     }
 
-    void print(std::ostream& out = std::cout) const 
+    void IPv4::print(std::ostream& out) const
     {
-        out << ipv4[0] << '.' 
-            << ipv4[1] << '.'
-            << ipv4[2] << '.'
-            << ipv4[3] << std::endl;
+        out << static_cast<int>(ipv4[0]) << '.' 
+            << static_cast<int>(ipv4[1]) << '.'
+            << static_cast<int>(ipv4[2]) << '.'
+            << static_cast<int>(ipv4[3]) << std::endl;
     }
-
-private:
-    std::array<uint8_t,4> ipv4;
-
-};

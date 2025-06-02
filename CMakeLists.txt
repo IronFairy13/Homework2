@@ -10,7 +10,7 @@ option(WITH_GTEST "Whether to build GTest test" OFF)
 configure_file(version.h.in version.h)
 
 add_executable(homework_cli main.cpp)
-add_library(homework_2 lib.cpp, ipv4.cpp)
+add_library(homework_2 lib.cpp ipv4.cpp)
 
 set_target_properties(homework_cli homework_2 PROPERTIES
     CXX_STANDARD 14

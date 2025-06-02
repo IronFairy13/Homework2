@@ -15,7 +15,7 @@ public:
 
     static std::array<uint8_t, 4> parser_ipv4(const std::string &s);
 
-    void print(std::ostream& out = std::cout);
+    void print(std::ostream& out = std::cout)const;
 
 private:
     std::array<uint8_t,4> ipv4;

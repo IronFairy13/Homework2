@@ -1,7 +1,7 @@
 #include "ipv4.h"
 #include <string>
 
-int main(int argc, char const *argv[])
+int main()
 {
     std::string s = "123.123.123.123";
     IPv4 ip1 (s);
