@@ -45,12 +45,12 @@ int main() {
   req_index1 = 0;
   uint8_t req_val2 = 70;
   size_t req_index2 = 1;
-  std::for_each(
-      ip_list.begin(), ip_list.end(),
-      [req_val1, req_index1, req_val2, req_index2](const IPv4 &ip) {
-        if ((ip[req_index1] == req_val1) && (ip[req_index2] == req_val2))
-          ip.print();
-      });
+  std::for_each(ip_list.begin(), ip_list.end(),
+                [req_val1, req_index1, req_val2, req_index2](const IPv4 &ip) {
+                  if ((ip[req_index1] == req_val1) &&
+                      (ip[req_index2] == req_val2))
+                    ip.print();
+                });
 
   auto target = 46;
 

@@ -23,21 +23,22 @@ void IPv4::print(std::ostream &out) const {
       << static_cast<int>(ipv4[2]) << '.' << static_cast<int>(ipv4[3]) << "\n";
 }
 
-std::ostream& operator<<(std::ostream& os, const IPv4& obj) {
-    os << static_cast<int>(obj.ipv4[0]) << '.'
-       << static_cast<int>(obj.ipv4[1]) << '.'
-       << static_cast<int>(obj.ipv4[2]) << '.'
-       << static_cast<int>(obj.ipv4[3]);
-    return os;
+std::ostream &operator<<(std::ostream &os, const IPv4 &obj) {
+  os << static_cast<int>(obj.ipv4[0]) << '.' << static_cast<int>(obj.ipv4[1])
+     << '.' << static_cast<int>(obj.ipv4[2]) << '.'
+     << static_cast<int>(obj.ipv4[3]);
+  return os;
 }
 
-std::array<uint8_t, 4>::iterator IPv4::begin() {return ipv4.begin(); };
+std::array<uint8_t, 4>::iterator IPv4::begin() { return ipv4.begin(); };
 
-std::array<uint8_t, 4>::const_iterator IPv4::begin() const {return ipv4.begin(); };
+std::array<uint8_t, 4>::const_iterator IPv4::begin() const {
+  return ipv4.begin();
+};
 
-std::array<uint8_t, 4>::iterator IPv4::end() {return ipv4.end(); };
+std::array<uint8_t, 4>::iterator IPv4::end() { return ipv4.end(); };
 
-std::array<uint8_t, 4>::const_iterator IPv4::end() const {return ipv4.end(); };
+std::array<uint8_t, 4>::const_iterator IPv4::end() const { return ipv4.end(); };
 
 bool IPv4::operator<(const IPv4 &other) const { return ipv4 < other.ipv4; }
 
