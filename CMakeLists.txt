@@ -9,10 +9,10 @@ option(WITH_GTEST "Whether to build GTest test" OFF)
 
 configure_file(version.h.in version.h)
 
-add_executable(homework_cli main.cpp)
+add_executable(ip_filter main.cpp)
 add_library(homework_2 lib.cpp ipv4.cpp)
 
-set_target_properties(homework_cli homework_2 PROPERTIES
+set_target_properties(ip_filter homework_2 PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
 )
@@ -21,7 +21,7 @@ target_include_directories(homework_2
     PRIVATE "${CMAKE_BINARY_DIR}"
 )
 
-target_link_libraries(homework_cli PRIVATE
+target_link_libraries(ip_filter PRIVATE
     homework_2
 )
 
@@ -42,7 +42,7 @@ if(WITH_GTEST)
 endif()
 
 if (MSVC)
-    target_compile_options(homework_cli PRIVATE
+    target_compile_options(ip_filter PRIVATE
         /W4
     )
     target_compile_options(homework_2 PRIVATE
@@ -54,7 +54,7 @@ if (MSVC)
         )
     endif()
 else ()
-    target_compile_options(homework_cli PRIVATE
+    target_compile_options(ip_filter PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
     target_compile_options(homework_2 PRIVATE
@@ -67,7 +67,7 @@ else ()
     endif()
 endif()
 
-install(TARGETS homework_cli RUNTIME DESTINATION bin)
+install(TARGETS ip_filter RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")

@@ -19,7 +19,6 @@ int main() {
     if (tab_pos != std::string::npos) {
       std::string ip = line.substr(0, tab_pos);
       IPv4 ip_n(ip);
-      ip_n.print();
       ip_list.push_back(ip_n);
     }
   }
@@ -41,23 +40,24 @@ int main() {
                     ip.print();
                 });
 
+  // looking for address start from 46.70
   req_val1 = 46;
   req_index1 = 0;
   uint8_t req_val2 = 70;
   size_t req_index2 = 1;
-  std::for_each(ip_list.begin(), ip_list.end(),
-                [req_val1, req_index1, req_val2, req_index2](const IPv4 &ip) {
-                  if ((ip[req_index1] == req_val1) &&
-                      (ip[req_index2] == req_val2))
-                    ip.print();
-                });
+  std::for_each(
+      ip_list.begin(), ip_list.end(),
+      [req_val1, req_index1, req_val2, req_index2](const IPv4 &ip) {
+        if ((ip[req_index1] == req_val1) && (ip[req_index2] == req_val2))
+          ip.print();
+      });
 
   auto target = 46;
 
-  std::find_if(ip_list.begin(), ip_list.end(), [target](const IPv4& ip) {
+  std::for_each(ip_list.begin(), ip_list.end(), [target](const IPv4 &ip) {
     if (std::find(ip.begin(), ip.end(), target) != ip.end()) {
-        ip.print();
-        std::cout << std::endl;
+      ip.print();
+      std::cout << std::endl;
       return true;
     }
     return false;
