@@ -32,13 +32,8 @@ jobs:
         run: conan install . --output-folder=build --build=missing -s build_type=Release
 
       - name: CMake configure
-        run: 
-            cmake -B build -S . \
-            -DPATCH_VERSION=${{ github.run_number }} \
-            -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake \
-            -DWITH_GTEST=ON \
-            -DCMAKE_BUILD_TYPE=Release
-            
+        run: cmake -B build -S . -DPATCH_VERSION=${{ github.run_number }} -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake -DWITH_GTEST=ON -DCMAKE_BUILD_TYPE=Release
+
       - name: Build
         run: cmake --build build
 
