@@ -4,6 +4,7 @@ name: 'C++ CI (Conan + GTest)'
 on:
   push:
     branches:
+      - main
       - master
       - feature/github_actions
 
