@@ -5,7 +5,7 @@ set(PROJECT_VERSION 0.0.${PATCH_VERSION})
 
 project(homework_2 VERSION ${PROJECT_VERSION})
 
-option(WITH_GTEST "Whether to build GTest test" OFF)
+option(WITH_GTEST "Whether to build GTest test" ON)
 
 configure_file(version.h.in version.h)
 
@@ -27,14 +27,14 @@ target_link_libraries(ip_filter PRIVATE
 
 if(WITH_GTEST)
     find_package(GTest REQUIRED)
-    add_executable(test_version test_version.cpp)
+    add_executable(test_ip test_ip.cpp  ipv4.cpp)
 
-    set_target_properties(test_version PROPERTIES
+    set_target_properties(test_ip PROPERTIES
         CXX_STANDARD 14
         CXX_STANDARD_REQUIRED ON
     )
 
-    target_link_libraries(test_version
+    target_link_libraries(test_ip
         GTest::gtest
         GTest::gtest_main
         homework_2
@@ -49,7 +49,7 @@ if (MSVC)
         /W4
     )
     if(WITH_GTEST)
-        target_compile_options(test_version PRIVATE
+        target_compile_options(test_ip PRIVATE
             /W4
         )
     endif()
@@ -61,7 +61,7 @@ else ()
         -Wall -Wextra -pedantic -Werror
     )
     if(WITH_GTEST)
-        target_compile_options(test_version PRIVATE
+        target_compile_options(test_ip PRIVATE
             -Wall -Wextra -pedantic -Werror
         )
     endif()
@@ -78,5 +78,5 @@ include(CPack)
 
 if(WITH_GTEST)
     enable_testing()
-    add_test(NAME test_version COMMAND test_version)
+    add_test(NAME test_ip COMMAND test_ip)
 endif()
