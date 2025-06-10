@@ -6,15 +6,15 @@
 #include "ipv4.h"
 
 int main() {
-  std::ifstream fin("../ip_filter.tsv");
-  if (!fin) {
-    std::cout << "File unavailable! \n";
-    return 1;
-  }
+  // std::ifstream fin("../ip_filter.tsv");
+  // if (!fin) {
+  //   std::cout << "File unavailable! \n";
+  //   return 1;
+  // }
 
   std::string line;
   std::vector<IPv4> ip_list;
-  while (std::getline(fin, line)) {
+  while (std::getline(std::cin, line)) {
     auto tab_pos = line.find('\t');
     if (tab_pos != std::string::npos) {
       std::string ip = line.substr(0, tab_pos);
@@ -57,7 +57,6 @@ int main() {
   std::for_each(ip_list.begin(), ip_list.end(), [target](const IPv4 &ip) {
     if (std::find(ip.begin(), ip.end(), target) != ip.end()) {
       ip.print();
-      std::cout << std::endl;
       return true;
     }
     return false;
